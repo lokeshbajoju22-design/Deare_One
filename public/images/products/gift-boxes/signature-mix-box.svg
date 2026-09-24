@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="900" fill="#F6F0E7"/>
+  <rect x="160" y="80" width="880" height="740" rx="50" fill="#16382E"/>
+  <rect x="240" y="210" width="700" height="490" rx="40" fill="#FFFDF9"/>
+  <circle cx="560" cy="420" r="140" fill="#E6D0A4"/>
+  <path d="M470 420C470 345 525 285 600 285C675 285 730 345 730 420C730 495 675 555 600 555C525 555 470 495 470 420Z" fill="#C7A56C"/>
+  <text x="600" y="670" text-anchor="middle" fill="#16382E" font-family="Georgia, serif" font-size="72">Signature Mix</text>
+  <text x="600" y="740" text-anchor="middle" fill="#16382E" font-family="Arial, sans-serif" font-size="34" letter-spacing="7">6-PIECE BOX</text>
+</svg>

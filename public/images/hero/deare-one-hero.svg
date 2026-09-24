@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1600" height="1100" viewBox="0 0 1600 1100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1100" fill="#F6F0E7"/>
+  <rect x="100" y="100" width="1400" height="900" rx="70" fill="#16382E"/>
+  <circle cx="800" cy="500" r="240" fill="#E6D0A4"/>
+  <path d="M510 500C510 380 610 300 800 300C990 300 1090 380 1090 500C1090 620 990 700 800 700C610 700 510 620 510 500Z" fill="#C7A56C"/>
+  <text x="800" y="880" text-anchor="middle" fill="#F9F5F0" font-family="Georgia, serif" font-size="100">DEARÉ ØNE</text>
+</svg>
