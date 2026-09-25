@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-green: #16382e;
+  --brand-green-soft: #2b4f43;
+  --brand-cream: #f6f0e7;
+  --brand-ivory: #fffdf9;
+  --brand-brown: #3a261b;
+  --brand-gold: #c5a66b;
+  --brand-body: #2e2a28;
+  --brand-line: #e6ded2;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-brand-ivory text-brand-body antialiased;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(22, 56, 46, 0.14);
+}

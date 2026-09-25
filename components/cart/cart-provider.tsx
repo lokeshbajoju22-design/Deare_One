@@ -1,4 +1,7 @@
-import { useEffect, useState } from 'react';
+'use client';
+
+import { useEffect, useState, createContext, useContext } from 'react';
+import { calculateDelivery } from '@/lib/delivery';
 import { Product } from '@/types';
 
 export type CartItem = {
@@ -22,12 +25,14 @@ type CartContextValue = {
   clearCart: () => void;
 };
 
-const CartContext = React.createContext<CartContextValue | undefined>(undefined);
+const CartContext = createContext<CartContextValue | undefined>(undefined);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [cart, setCart] = useState<CartItem[]>([]);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const raw = window.localStorage.getItem('deare-one-cart');
     if (raw) {
       try {
@@ -39,12 +44,14 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem('deare-one-cart', JSON.stringify(cart));
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem('deare-one-cart', JSON.stringify(cart));
+    }
   }, [cart]);
 
   const addItem = (product: Product, variant: string, quantity = 1, image?: string, priceOverride?: number) => {
     const variantInfo = product.variants.find((entry) => entry.name === variant) || product.variants[0];
-    const itemImage = image || product.images[0];
+    const itemImage = image || product.images[0] || '/images/brand/deare-one-badge.svg';
     const price = priceOverride ?? variantInfo?.price ?? product.price;
     const id = `${product.id}-${variant}`;
 
@@ -58,6 +65,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   };
 
   const removeFromCart = (id: string) => setCart((prev) => prev.filter((entry) => entry.id !== id));
+
   const updateQuantity = (id: string, nextQuantity: number) => {
     if (nextQuantity <= 0) {
       removeFromCart(id);
@@ -66,6 +74,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
     setCart((prev) => prev.map((entry) => (entry.id === id ? { ...entry, quantity: nextQuantity } : entry)));
   };
+
   const clearCart = () => setCart([]);
 
   const subtotal = cart.reduce((sum, entry) => sum + entry.price * entry.quantity, 0);
@@ -78,7 +87,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 }
 
 export function useCart() {
-  const context = React.useContext(CartContext);
+  const context = useContext(CartContext);
   if (!context) {
     throw new Error('useCart must be used within CartProvider');
   }

@@ -1,6 +1,6 @@
 # Dearé Øne
 
-A premium, handcrafted chocolate storefront for Dearé Øne, designed for gifting, boutique ordering, and future ecommerce growth.
+A premium boutique chocolate storefront for Dearé Øne, designed for gifting, boutique ordering, and future ecommerce growth.
 
 ## Features
 - Premium brand-first storefront experience
@@ -10,41 +10,85 @@ A premium, handcrafted chocolate storefront for Dearé Øne, designed for giftin
 - Payment abstraction for future Razorpay or manual checkout
 - SEO metadata and legal pages
 - Mobile-first responsive design
+- Centralized business and delivery configuration
+
+## Prerequisites
+- Node.js 18 or newer
+- npm 9 or newer
 
 ## Local setup
 
+1. Clone the repository and switch to the working branch:
+   ```bash
+   git checkout feature/deare-one-store
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Create the local environment file:
+   ```bash
+   cp .env.example .env.local
+   ```
+
+4. Update the values in `.env.local` if needed.
+
+5. Start the app in development mode:
+   ```bash
+   npm run dev
+   ```
+
+6. Open the site in your browser:
+   ```bash
+   http://localhost:3000
+   ```
+
+## Production build
+
+Run the production build locally before deploying:
+
 ```bash
 npm install
-npm run dev
+npm run build
 ```
 
-Open http://localhost:3000
-
-## Environment variables
-Copy `.env.example` and update values:
+Then start the production server:
 
 ```bash
-cp .env.example .env.local
+npm run start
 ```
 
 ## Deployment
-This project is ready for Vercel deployment. Ensure the environment variables are added in the Vercel project settings.
 
-## Product and image updates
-- Add or edit product data in `data/products.ts`
-- Update brand settings in `data/site.ts`
-- Replace placeholder images in `public/images/`
-- Keep filenames descriptive and permanent
+This site is ready for deployment on Vercel, Netlify, or any Node.js-hosted platform.
+
+### Vercel
+1. Import the repository in Vercel.
+2. Set the project framework to Next.js.
+3. Add the environment variables from `.env.example` in the Vercel dashboard.
+4. Deploy the project.
+
+Recommended environment variables:
+```bash
+NEXT_PUBLIC_APP_URL=https://your-domain.com
+NEXT_PUBLIC_WHATSAPP_NUMBER=+919876543210
+NEXT_PUBLIC_CONTACT_EMAIL=hello@deareone.in
+NEXT_PUBLIC_INSTAGRAM_HANDLE=@deare_one
+NEXT_PUBLIC_RAZORPAY_KEY_ID=
+NEXT_PUBLIC_ENABLE_PAYMENT=false
+```
 
 ## Project structure
 - `app/` – routes and page-level UI
 - `components/` – reusable storefront components
 - `data/` – product and site configuration
 - `lib/` – utility functions and payment logic
-- `public/images/` – placeholder and real brand/product imagery
+- `public/images/` – brand and product imagery
 - `types/` – shared TypeScript models
 
 ## Important notes
-- No payment secret or API keys are stored in the frontend.
-- The checkout flow is intentionally abstracted for future payment gateway integration.
 - Product prices and delivery settings are centrally managed for easy updates.
+- The checkout flow is intentionally abstracted for future payment gateway integration.
+- No payment secret or API key should be committed to the frontend.
