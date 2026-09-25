@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { useCart } from '@/components/cart/cart-provider';
 import { useState } from 'react';
@@ -41,7 +43,14 @@ export function ProductDetailPage({ product }: { product: Product }) {
 
           <div className="grid grid-cols-4 gap-3">
             {product.images.map((image, index) => (
-              <button key={image} onClick={() => setSelectedImage(image)} className={`overflow-hidden rounded-[1rem] border ${selectedImage === image ? 'border-brand-green' : 'border-brand-line'} bg-white p-1`}>
+              <button
+                key={image}
+                onClick={() => setSelectedImage(image)}
+                className={`overflow-hidden rounded-[1rem] border transition ${
+                  selectedImage === image ? 'border-brand-green' : 'border-brand-line'
+                } bg-white p-2`}
+                aria-label={`View product image ${index + 1}`}
+              >
                 <img src={image} alt={`${product.name} view ${index + 1}`} className="h-20 w-full rounded-[0.75rem] object-cover" />
               </button>
             ))}
@@ -78,15 +87,26 @@ export function ProductDetailPage({ product }: { product: Product }) {
             </div>
 
             <div className="flex flex-col gap-3 sm:flex-row">
-              <button onClick={handleAdd} className="inline-flex flex-1 items-center justify-center rounded-full bg-brand-green px-6 py-3.5 text-sm font-medium text-white hover:bg-brand-greenSoft">
+              <button
+                onClick={handleAdd}
+                className="inline-flex flex-1 items-center justify-center rounded-full bg-brand-green px-6 py-3.5 text-sm font-medium text-white transition hover:bg-brand-greenSoft"
+              >
                 Add to cart
               </button>
-              <Link href="/checkout" className="inline-flex flex-1 items-center justify-center rounded-full border border-brand-green/20 bg-white px-6 py-3.5 text-sm font-medium text-brand-green hover:bg-brand-cream">
+              <Link
+                href="/checkout"
+                className="inline-flex flex-1 items-center justify-center rounded-full border border-brand-green/20 bg-white px-6 py-3.5 text-sm font-medium text-brand-green transition hover:bg-brand-cream"
+              >
                 Buy now
               </Link>
             </div>
 
-            <a href={whatsappUrl} target="_blank" rel="noreferrer" className="inline-flex w-full items-center justify-center rounded-full border border-brand-green/20 bg-transparent px-6 py-3.5 text-sm font-medium text-brand-green hover:bg-brand-cream">
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex w-full items-center justify-center rounded-full border border-brand-green/20 bg-transparent px-6 py-3.5 text-sm font-medium text-brand-green transition hover:bg-brand-cream"
+            >
               Order on WhatsApp
             </a>
           </div>

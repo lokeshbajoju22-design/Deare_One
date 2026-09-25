@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { useCart } from '@/components/cart/cart-provider';
 import { formatCurrency } from '@/lib/format';
@@ -44,7 +46,7 @@ export function ProductCard({ product }: { product: Product }) {
         <div className="flex items-center gap-3">
           <button
             onClick={() => addItem(product, product.variants[0]?.name || 'Default')}
-            className="inline-flex flex-1 items-center justify-center rounded-full bg-brand-green px-4 py-3 text-sm font-medium text-white hover:bg-brand-greenSoft"
+            className="inline-flex flex-1 items-center justify-center rounded-full bg-brand-green px-4 py-3 text-sm font-medium text-white transition hover:bg-brand-greenSoft"
           >
             Add to cart
           </button>
