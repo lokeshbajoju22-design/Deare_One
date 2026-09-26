@@ -4,9 +4,16 @@ import Link from 'next/link';
 import { useCart } from '@/components/cart/cart-provider';
 import { formatCurrency } from '@/lib/format';
 import { Product } from '@/types';
+import { useState } from 'react';
 
 export function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCart();
+  const [quantity, setQuantity] = useState(1);
+
+  const handleAddToCart = () => {
+    addItem(product, product.variants[0]?.name || 'Default', quantity);
+    setQuantity(1);
+  };
 
   return (
     <article className="group overflow-hidden rounded-[1.75rem] border border-brand-line bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-xl">
@@ -44,8 +51,26 @@ export function ProductCard({ product }: { product: Product }) {
         </div>
 
         <div className="flex items-center gap-3">
+          <div className="inline-flex items-center gap-2 rounded-full border border-brand-line bg-brand-cream px-3 py-1">
+            <button
+              onClick={() => setQuantity(Math.max(1, quantity - 1))}
+              className="h-7 w-7 rounded-full bg-white text-sm text-brand-green transition hover:bg-brand-cream"
+              aria-label="Decrease quantity"
+            >
+              −
+            </button>
+            <span className="min-w-6 text-center text-sm font-medium">{quantity}</span>
+            <button
+              onClick={() => setQuantity(quantity + 1)}
+              className="h-7 w-7 rounded-full bg-white text-sm text-brand-green transition hover:bg-brand-cream"
+              aria-label="Increase quantity"
+            >
+              +
+            </button>
+          </div>
+
           <button
-            onClick={() => addItem(product, product.variants[0]?.name || 'Default')}
+            onClick={handleAddToCart}
             className="inline-flex flex-1 items-center justify-center rounded-full bg-brand-green px-4 py-3 text-sm font-medium text-white transition hover:bg-brand-greenSoft"
           >
             Add to cart
