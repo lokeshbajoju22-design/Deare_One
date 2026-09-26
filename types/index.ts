@@ -1,0 +1,23 @@
+export type Product = {
+  id: string;
+  slug: string;
+  name: string;
+  category: string;
+  description: string;
+  shortDescription: string;
+  price: number;
+  compareAtPrice?: number;
+  images: string[];
+  variants: { name: string; price: number }[];
+  ingredients: string;
+  allergens: string;
+  weight: string;
+  storage: string;
+  stock: number;
+  featured: boolean;
+  badge?: string;
+  tags: string[];
+  available: boolean;
+  seoTitle: string;
+  seoDescription: string;
+};
